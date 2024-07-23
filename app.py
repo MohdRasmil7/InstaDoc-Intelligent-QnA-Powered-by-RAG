@@ -43,7 +43,7 @@ if file is not None:
     else:
         with open(f'{store_name}.pkl','wb') as f:
             pickle.dump(vector_stores,f)
-            st.success(f"Vector store saved as {store_name}")
+
     
         
 
