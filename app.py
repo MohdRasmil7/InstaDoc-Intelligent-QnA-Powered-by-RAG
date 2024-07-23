@@ -7,6 +7,13 @@ import tempfile
 import os
 import pickle
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from dotenv import load_dotenv
+load_dotenv()
+
+
+
+
+
 st.title('Document QnA with RAG 💡')
 
 st.info('''Welcome to DocuQ! 📄✨
@@ -21,7 +28,7 @@ if file is not None:
     text=''
     for pages in pdf_reader.pages:
         text += pages.extract_text()
-    st.write(text)
+    #st.write(text)
     embeddings=GoogleGenerativeAIEmbeddings()
     splitter=RecursiveCharacterTextSplitter(chunk_size=100,chunk_overlap=20)
     splitted_text=splitter.split_text(text=text)
