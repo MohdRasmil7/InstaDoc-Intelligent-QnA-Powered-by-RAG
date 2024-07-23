@@ -3,7 +3,7 @@ from langchain_community.document_loaders import PyPDFDirectoryLoader
 from PyPDF2 import PdfReader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import pandas as pd
-import tempfile
+from langchain_community.vectorstores import FAISS
 import os
 import pickle
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
@@ -11,7 +11,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-
+os.environ['GROQ_API_KEY']=os.getenv('GROQ_API_KEY')
+os.environ['GOOGLE_API_KEY']=os.getenv('GOOGLE_API_KEY')
 
 
 st.title('Document QnA with RAG 💡')
@@ -28,11 +29,23 @@ if file is not None:
     text=''
     for pages in pdf_reader.pages:
         text += pages.extract_text()
-    #st.write(text)
-    embeddings=GoogleGenerativeAIEmbeddings()
+    
+    embeddings=GoogleGenerativeAIEmbeddings(model="models/embedding-001")
     splitter=RecursiveCharacterTextSplitter(chunk_size=100,chunk_overlap=20)
     splitted_text=splitter.split_text(text=text)
-    st.write(splitted_text)
+    vector_stores=FAISS.from_texts(embedding=embeddings,texts=splitted_text)
+    
+    store_name=file.name[:-4]
+    if os.path.exists(f'{store_name}.pkl'):
+        with open(f'{store_name}.pkl','rb') as f:
+            vector_stores=pickle.loads(f)
+            st.write('embedding loaded already')
+    else:
+        vector_stores.save_local(store_name)
+        st.success(f"Vector store saved as {store_name}")
+    '''with open(f'{store_name}.pkl','wb') as f:
+        pickle.dump(vector_stores,f)'''
+        
 
 
 
