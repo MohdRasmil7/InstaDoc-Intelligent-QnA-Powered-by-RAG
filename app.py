@@ -41,10 +41,10 @@ if file is not None:
             vector_stores=pickle.loads(f)
             st.write('embedding loaded already')
     else:
-        vector_stores.save_local(store_name)
-        st.success(f"Vector store saved as {store_name}")
-    '''with open(f'{store_name}.pkl','wb') as f:
-        pickle.dump(vector_stores,f)'''
+        with open(f'{store_name}.pkl','wb') as f:
+            pickle.dump(vector_stores,f)
+            st.success(f"Vector store saved as {store_name}")
+    
         
 
 
