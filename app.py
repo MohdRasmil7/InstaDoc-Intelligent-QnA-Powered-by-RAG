@@ -16,8 +16,12 @@ file=st.file_uploader(label='Upload your Pdf Here',type='pdf')
 if file is not None:
     pdf_reader=PdfReader(file)
     st.write(pdf_reader)
+    text=''
+    for pages in pdf_reader.pages:
+        text += pages.extract_text()
+    st.write(text)
 
-st.session_state.loader=PyPDFDirectoryLoader('/','.pkl')
+#st.session_state.loader=PyPDFDirectoryLoader('/','.pkl')
 #store_name=file.name[:-4]
 #with open(f'{store_name}.pkl','wb') as f:
 #            pickle.dump(store_name,f)
