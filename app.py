@@ -6,10 +6,13 @@ import pandas as pd
 from langchain_community.vectorstores import FAISS
 import os
 import pickle
+from langchain_community.vectorstores import FAISS
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from dotenv import load_dotenv
 load_dotenv()
 
+os.environ['GROQ_API_KEY']=os.getenv('GROQ_API_KEY')
+os.environ['GOOGLE_API_KEY']=os.getenv('GOOGLE_API_KEY')
 
 os.environ['GROQ_API_KEY']=os.getenv('GROQ_API_KEY')
 os.environ['GOOGLE_API_KEY']=os.getenv('GOOGLE_API_KEY')
@@ -33,6 +36,7 @@ if file is not None:
     embeddings=GoogleGenerativeAIEmbeddings(model="models/embedding-001")
     splitter=RecursiveCharacterTextSplitter(chunk_size=100,chunk_overlap=20)
     splitted_text=splitter.split_text(text=text)
+
     vector_stores=FAISS.from_texts(embedding=embeddings,texts=splitted_text)
     
     store_name=file.name[:-4]
@@ -45,7 +49,7 @@ if file is not None:
             pickle.dump(vector_stores,f)
 
     
-        
+   
 
 
 
