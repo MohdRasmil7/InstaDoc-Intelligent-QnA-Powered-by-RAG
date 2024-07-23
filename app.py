@@ -37,6 +37,19 @@ if file is not None:
     splitter=RecursiveCharacterTextSplitter(chunk_size=100,chunk_overlap=20)
     splitted_text=splitter.split_text(text=text)
 
+    vector_stores=FAISS.from_texts(embedding=embeddings,texts=splitted_text)
+    
+    store_name=file.name[:-4]
+    if os.path.exists(f'{store_name}.pkl'):
+        with open(f'{store_name}.pkl','rb') as f:
+            vector_stores=pickle.loads(f)
+            st.write('embedding loaded already')
+    else:
+        with open(f'{store_name}.pkl','wb') as f:
+            pickle.dump(vector_stores,f)
+
+    
+   
 
 
 
