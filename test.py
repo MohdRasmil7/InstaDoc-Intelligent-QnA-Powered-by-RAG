@@ -24,7 +24,7 @@ llm = ChatGroq(model='llama3-70b-8192')
 
 prompt = ChatPromptTemplate.from_template(
     '''
-As an expert in document analysis, you have a comprehensive understanding of the content within the provided documents and are proficient in extracting and interpreting relevant information. Users will pose questions related to the document, seeking accurate and concise answers.
+As an expert in document analysis, you have a comprehensive understanding of the content within the uploaded PDFs and are proficient in extracting and interpreting relevant information. Users will pose questions related to the document, seeking accurate and concise answers.
 
 If a question pertains to information not contained within the document, kindly inform the user that the document does not contain the requested information.
 
@@ -35,7 +35,7 @@ Below is a snippet of context from the relevant section of the document, which w
 Context: {context}
 Question: {input}
 <context>
-Your response should consist solely of useful information extracted from the document . But be polite and enhance your answer.
+Your response should consist solely of useful information extracted from the document. Be polite and enhance your answer with detailed information.
 
 Useful information:
 
@@ -45,8 +45,8 @@ Useful information:
 # Initialize session state
 if 'vector_store' not in st.session_state:
     st.session_state.vector_store = None
-
-file = st.file_uploader(label='Upload your Pdf Here', type='pdf')
+st.sidebar.header('Upload Your document here')
+file = st.sidebar.file_uploader(label='', type='pdf')
 if file is not None:
     # Check if a new file has been uploaded
     if 'last_uploaded_file' not in st.session_state or st.session_state.last_uploaded_file != file.name:
@@ -55,7 +55,6 @@ if file is not None:
 
     if st.session_state.vector_store is None:
         pdf_reader = PdfReader(file)
-        st.write(pdf_reader)
         text = ''
         for page in pdf_reader.pages:
             text += page.extract_text()
@@ -65,9 +64,9 @@ if file is not None:
         splitted_text = splitter.split_text(text=text)
 
         st.session_state.vector_store = FAISS.from_texts(texts=splitted_text, embedding=embeddings)
-        st.write('Embedding created and stored in session')
+        st.write('Embedding created and stored in session ✨')
     else:
-        st.write('Using existing embedding from session')
+        st.write('Using existing embedding from session 💬')
 
     user_prompt = st.chat_input('Enter your Query related to your Document')
     if user_prompt:
