@@ -1,4 +1,4 @@
-# 📄 DocuQ - AdvancedDocQnA-RAG 💡
+# 📄 DocuQ - Advanced Document QnA with Retrieval Augmented Generation (RAG) and Large Language Model (LLM)💡
 
 ## Overview ✨
 
