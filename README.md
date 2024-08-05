@@ -1,4 +1,4 @@
-# 📄 DocuQ - AdvancedDocQnA-RAG 💡
+# 📄 DocuQ - Advanced Document QnA with Retrieval Augmented Generation (RAG) and Large Language Model (LLM)💡
 
 ## Overview ✨
 
@@ -95,8 +95,6 @@ Get brief summaries of your document’s content to quickly understand its key p
 
 - **Issue**: Application fails to run.
 - **Solution**: Ensure all dependencies are installed correctly and environment variables are set up in the `.env` file.
-- **Issue**: PDF upload not working.
-- **Solution**: Verify the PDF file is not corrupted and is of a supported format.
 
 ## 🌟 Contributing
 

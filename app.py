@@ -75,4 +75,5 @@ if file is not None:
         retriever=st.session_state.vector_store.as_retriever()
         retriever_chain=create_retrieval_chain(retriever,document_chain)
         response=retriever_chain.invoke({'input':user_prompt})
+
         st.chat_message('assistant').markdown(response['answer'])
