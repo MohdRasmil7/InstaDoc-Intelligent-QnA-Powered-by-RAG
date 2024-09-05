@@ -102,5 +102,4 @@ We welcome contributions to improve InstaDoc! If you'd like to contribute, pleas
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/MohdRasmil7/InstaDoc-Intelligent-QnA-Powered-by-RAG
-/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/MohdRasmil7/InstaDoc-Intelligent-QnA-Powered-by-RAG/blob/main/LICENSE) file for details.
