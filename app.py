@@ -15,8 +15,8 @@ load_dotenv()
 os.environ['GROQ_API_KEY'] = os.getenv('GROQ_API_KEY')
 os.environ['GOOGLE_API_KEY'] = os.getenv('GOOGLE_API_KEY')
 
-st.title('Document QnA with RAG 💡')
-st.info('''Welcome to DocuQ! 📄✨
+st.title('InstaDoc: Document Qna powered by RAG 💡')
+st.info('''Welcome to InstaDoc! 📄✨
 
 Description: Easily upload your documents and get instant answers to your questions. DocuQ provides quick summaries, accurate Q&A, and interactive quizzes to help you understand your content better. Enjoy a seamless and secure experience with our user-friendly interface.''')
 

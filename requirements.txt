@@ -1,9 +1,10 @@
 streamlit
-langchain-community
-python-dotenv
 langchain
-langchain-groq
+python-dotenv
+langchain-community
 pandas
-langchain-google-genai
 PyPDF2
-pandas
+numpy
+sentence-transformers   # For Hugging Face embeddings
+nltk                    # For text splitting (sentence tokenization)
+chromadb                # For vector storage (Chroma)
